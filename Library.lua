@@ -1,6 +1,3 @@
--- Probably my newest code up to date thats available publicly. 
--- Made around march - april 2025
-
 -- Variables 
     -- Services
     local InputService, HttpService, GuiService, RunService, Stats, CoreGui, TweenService, SoundService, Workspace, Players = game:GetService("UserInputService"), game:GetService("HttpService"), game:GetService("GuiService"), game:GetService("RunService"), game:GetService("Stats"), game:GetService("CoreGui"), game:GetService("TweenService"), game:GetService("SoundService"), game:GetService("Workspace"), game:GetService("Players")
@@ -32,14 +29,14 @@
     
     local themes = {
         preset = {
-            inline = rgb(50, 50, 50);
-            gradient = rgb(40, 40, 40);
-            outline = rgb(20, 20, 20);
-            accent = rgb(50, 119, 186);
-            background = rgb(30, 30, 30);
-            text_color = rgb(239, 239, 239);
+            inline = rgb(38, 39, 43);
+            gradient = rgb(27, 27, 30);
+            outline = rgb(0, 0, 0);
+            accent = rgb(132, 0, 255);
+            background = rgb(27, 27, 32);
+            text_color = rgb(255, 255, 255);
             text_outline = rgb(0, 0, 0);
-            tab_background = rgb(26, 26, 26);
+            tab_background = rgb(0, 0, 0);
         },
         utility = {},
         gradients = {
@@ -4788,7 +4785,7 @@
             end})
 
             window.Tweening = true
-            Section:Label({Name = "menu bind"}):Keybind({Name = "Menu Bind", ShowInList = false, Callback = function(bool) 
+            Section:Label({Name = "menu bind"}):Keybind({Name = "Menu Bind", Default = "INS", ShowInList = false, Callback = function(bool) 
                 if window.Tweening then
                     return 
                 end 
@@ -4803,7 +4800,7 @@
             Section:Toggle({Name = "keybind list", Flag = "KeybindList", Callback = window.ToggleKeybindList})
             Section:Toggle({Name = "toggle status", Flag = "Status", Callback = window.ToggleStatus})
             Section:Textbox({Name = "custom menu name", Callback = window.ChangeTitle, Default = window.Name, Placeholder = "Title name here..."})
-            Section:Textbox({Name = "custom watermark name", Callback = window.ChangeWatermarkTitle, Default = window.Name .. ".lua", Placeholder = "Title name here..."})
+            Section:Textbox({Name = "custom watermark name", Callback = window.ChangeWatermarkTitle, Default = window.Name .. ".solutions", Placeholder = "Title name here..."})
             Section:Dropdown({Name = "tweening style", Options = {"Linear", "Sine", "Back", "Quad", "Quart", "Quint", "Bounce", "Elastic", "Exponential", "Circular", "Cubic"}, Flag = "LibraryEasingStyle", Default = "Quint", Callback = function(Option)
                 Library.EasingStyle = Enum.EasingStyle[Option]
             end});
