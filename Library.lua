@@ -4760,35 +4760,35 @@
             local Text;
             local ConfigText; 
 
-            local Tab = window:Tab({Name = "Settings"})
+            local Tab = window:Tab({Name = "settings"})
 
-            local Section = Tab:Section({Name = "Main", Side = "Left"})
-            ConfigHolder = Section:Dropdown({Name = "Configs", Options = {"Report", "This", "Error", "To", "Finobe"}, Callback = function(option) if Text then Text.Set(option) end end, Flag = "config_Name_list"}); Library:UpdateConfigList()
+            local Section = Tab:Section({Name = "main", Side = "Left"})
+            ConfigHolder = Section:Dropdown({Name = "configs", Options = {"Report", "This", "Error", "To", "Finobe"}, Callback = function(option) if Text then Text.Set(option) end end, Flag = "config_Name_list"}); Library:UpdateConfigList()
             window.Tweening = true
-            Text = Section:Textbox({Name = "Config Name:", Flag = "config_Name_text", Callback = function(text)
+            Text = Section:Textbox({Name = "config name:", Flag = "config_Name_text", Callback = function(text)
                 ConfigText = text
             end})
             window.Tweening = false
-            Section:Button({Name = "Save", Callback = function() 
+            Section:Button({Name = "save", Callback = function() 
                 writefile(Library.Directory .. "/configs/" .. ConfigText .. ".cfg", Library:GetConfig())
                 Library:UpdateConfigList()
-                Notifications:Create({Name = "Saved Config (" ..  Library.Directory .. "/configs/" .. ConfigText .. ".cfg" .. ")"}) 
+                Notifications:Create({Name = "saved config (" ..  Library.Directory .. "/configs/" .. ConfigText .. ".cfg" .. ")"}) 
             end})
 
-            Section:Button({Name = "Load", Callback = function() 
+            Section:Button({Name = "load", Callback = function() 
                 Library:LoadConfig(readfile(Library.Directory .. "/configs/" .. ConfigText .. ".cfg"))  
                 Library:UpdateConfigList() 
-                Notifications:Create({Name = "Loaded Config (" ..  Library.Directory .. "/configs/" .. ConfigText .. ".cfg" .. ")"}) 
+                Notifications:Create({Name = "loaded config (" ..  Library.Directory .. "/configs/" .. ConfigText .. ".cfg" .. ")"}) 
             end})
 
-            Section:Button({Name = "Delete", Callback = function() 
+            Section:Button({Name = "delete", Callback = function() 
                 delfile(Library.Directory .. "/configs/" .. ConfigText .. ".cfg")  
                 Library:UpdateConfigList() 
-                Notifications:Create({Name = "Deleted Config (" ..  Library.Directory .. "/configs/" .. ConfigText .. ".cfg" .. ")"}) 
+                Notifications:Create({Name = "deleted config (" ..  Library.Directory .. "/configs/" .. ConfigText .. ".cfg" .. ")"}) 
             end})
 
             window.Tweening = true
-            Section:Label({Name = "Menu Bind"}):Keybind({Name = "Menu Bind", ShowInList = false, Callback = function(bool) 
+            Section:Label({Name = "menu bind"}):Keybind({Name = "Menu Bind", ShowInList = false, Callback = function(bool) 
                 if window.Tweening then
                     return 
                 end 
@@ -4798,20 +4798,20 @@
 
             delay(2, function() window.Tweening = false end)
 
-            local Section = Tab:Section({Name = "Other", Side = "Right"})
-            Section:Toggle({Name = "Watermark", Flag = "Watermark", Callback = window.ToggleWatermark})
-            Section:Toggle({Name = "Keybind List", Flag = "KeybindList", Callback = window.ToggleKeybindList})
-            Section:Toggle({Name = "Toggle Status", Flag = "Status", Callback = window.ToggleStatus})
-            Section:Textbox({Name = "Custom Menu Name", Callback = window.ChangeTitle, Default = window.Name, Placeholder = "Title name here..."})
-            Section:Textbox({Name = "Custom Watermark Name", Callback = window.ChangeWatermarkTitle, Default = window.Name .. ".lua", Placeholder = "Title name here..."})
-            Section:Dropdown({Name = "Tweening Style", Options = {"Linear", "Sine", "Back", "Quad", "Quart", "Quint", "Bounce", "Elastic", "Exponential", "Circular", "Cubic"}, Flag = "LibraryEasingStyle", Default = "Quint", Callback = function(Option)
+            local Section = Tab:Section({Name = "other", Side = "Right"})
+            Section:Toggle({Name = "watermark", Flag = "Watermark", Callback = window.ToggleWatermark})
+            Section:Toggle({Name = "keybind list", Flag = "KeybindList", Callback = window.ToggleKeybindList})
+            Section:Toggle({Name = "toggle status", Flag = "Status", Callback = window.ToggleStatus})
+            Section:Textbox({Name = "custom menu name", Callback = window.ChangeTitle, Default = window.Name, Placeholder = "Title name here..."})
+            Section:Textbox({Name = "custom watermark name", Callback = window.ChangeWatermarkTitle, Default = window.Name .. ".lua", Placeholder = "Title name here..."})
+            Section:Dropdown({Name = "tweening style", Options = {"Linear", "Sine", "Back", "Quad", "Quart", "Quint", "Bounce", "Elastic", "Exponential", "Circular", "Cubic"}, Flag = "LibraryEasingStyle", Default = "Quint", Callback = function(Option)
                 Library.EasingStyle = Enum.EasingStyle[Option]
             end});
-            Section:Slider({Name = "Tweening Speed", Min = 0, Max = 10, Decimal = 0.01, Suffix = "s", Default = 0.25, Flag = "TweeningSpeed", Callback = function(int)
+            Section:Slider({Name = "tweening speed", Min = 0, Max = 10, Decimal = 0.01, Suffix = "s", Default = 0.01, Flag = "TweeningSpeed", Callback = function(int)
                 Library.TweeningSpeed = int
             end})
 
-            Section:Label({Name = "Inline"}):Colorpicker({Flag = "Inline", Callback = function(color, alpha) 
+            Section:Label({Name = "inline"}):Colorpicker({Flag = "Inline", Callback = function(color, alpha) 
                 Library:RefreshTheme("inline", color) 
 
                 for _,seq in themes.gradients.Selected do 
@@ -4819,7 +4819,7 @@
                 end 
             end, Color = themes.preset.inline})
 
-            Section:Label({Name = "Gradient"}):Colorpicker({Flag = "Gradient", Callback = function(color, alpha) 
+            Section:Label({Name = "gradient"}):Colorpicker({Flag = "Gradient", Callback = function(color, alpha) 
                 Library:RefreshTheme("gradient", color)
 
                 for _,seq in themes.gradients.Selected do 
@@ -4831,15 +4831,15 @@
                 end
             end, Color = themes.preset.gradient})
             
-            Section:Label({Name = "Outline"}):Colorpicker({Flag = "Outline", Callback = function(color, alpha) 
+            Section:Label({Name = "outline"}):Colorpicker({Flag = "Outline", Callback = function(color, alpha) 
                 Library:RefreshTheme("outline", color) 
             end, Color = themes.preset.outline})
             
-            Section:Label({Name = "Accent"}):Colorpicker({Flag = "Accent", Callback = function(color, alpha) 
+            Section:Label({Name = "accent"}):Colorpicker({Flag = "Accent", Callback = function(color, alpha) 
                 Library:RefreshTheme("accent", color) 
             end, Color = themes.preset.accent})
             
-            Section:Label({Name = "Background"}):Colorpicker({Flag = "Background", Callback = function(color, alpha) 
+            Section:Label({Name = "background"}):Colorpicker({Flag = "Background", Callback = function(color, alpha) 
                 Library:RefreshTheme("background", color) 
 
                 for _,seq in themes.gradients.Deselected do 
@@ -4847,15 +4847,15 @@
                 end
             end, Color = themes.preset.background})
             
-            Section:Label({Name = "Text Color"}):Colorpicker({Flag = "Text Color", Callback = function(color, alpha) 
+            Section:Label({Name = "text color"}):Colorpicker({Flag = "Text Color", Callback = function(color, alpha) 
                 Library:RefreshTheme("text_color", color) 
             end, Color = themes.preset.text_color})
             
-            Section:Label({Name = "Text Outline"}):Colorpicker({Flag = "Text Outline", Callback = function(color, alpha) 
+            Section:Label({Name = "text outline"}):Colorpicker({Flag = "Text Outline", Callback = function(color, alpha) 
                 Library:RefreshTheme("text_outline", color) 
             end, Color = themes.preset.text_outline})
             
-            Section:Label({Name = "Background"}):Colorpicker({Flag = "Background", Callback = function(color, alpha) 
+            Section:Label({Name = "background"}):Colorpicker({Flag = "Background", Callback = function(color, alpha) 
                 Library:RefreshTheme("tab_background", color) 
             end, Color = themes.preset.tab_background})
             
